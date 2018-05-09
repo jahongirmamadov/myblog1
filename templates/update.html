@@ -1,0 +1,21 @@
+
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block body %}
+
+   <div class=" container row">
+  <div class="col-lg-5 col-lg-offset-5">
+      <br><strong><h1 style="text-align:center">Update Article</h1></strong>
+      <hr>
+       <form method="post">
+      {% csrf_token %}
+           {{ form.media }}
+      {{ form | crispy }}
+      <button class="btn btn-primary btn-block">Update</button>
+      </form>
+   </div>
+   </div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+   <div class=" container row">
+  <div class="col-lg-5 col-lg-offset-5">
+     <br><p> Control Panel </p>
+    <p>{{ request.user.username }}</p>
+      <hr>
+      <a type="submit" class="btn btn-danger" href="{% url 'blog:add' %}">Add Article</a>
+
+
+
+          <table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Content</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if articles %}
+      {% for article in articles %}
+    <tr>
+      <th scope="row">{{ article.id }}</th>
+      <td><a href="/blog/article/{{ article.id }}">{{ article.title }}</a> </td>
+      <td>{{ article.author }}</td>
+      <td>{{ article.content }}</td>
+      <td><a href="/blog/update/{{ article.id }}"><button>Update</button></a></td>
+      <td><a href="/blog/delete/{{ article.id }}"><button>Delete</button></a></td>
+
+    </tr>
+    {% endfor %}
+  {% else %}
+      <p>There is no article yet!!!</p>
+  {% endif %}
+
+  </tbody>
+</table>
+
+
+   </div>
+   </div>
+{% endblock body %}
